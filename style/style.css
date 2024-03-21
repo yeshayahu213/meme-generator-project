@@ -1,0 +1,287 @@
+@font-face {
+    font-family: 'logo';
+    src: url(/fonts/Engagement-Regular.ttf);
+    
+}
+@font-face {
+    font-family: 'medium';
+    src:url(/fonts/MPLUS1p-Medium.ttf)
+}
+body{
+    background-color: #f6f4d4;
+}
+*{
+    font-family:'medium';
+}
+.gallery{
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.pic{
+    height: 280px;
+    width: 280px;
+    margin: 10px;
+}
+.nav-gallery{
+
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    margin-inline: 10vw;
+    margin-block: 5vh;
+}
+.links{
+    font-family:'medium';
+    list-style: none;
+    display: flex;
+    font-family:'open sans';
+   
+    
+}
+.open-gallery-link{
+    font-family:'medium';
+    right: 90px;
+top: 55px;
+    display: none;
+    position: fixed;
+
+top: 50px;
+}
+.gallery-link{
+    margin: 20px;
+    font-size: 20px;
+}
+.logo{
+    font-family: 'logo';
+    font-size: 30px;
+    margin: 20px;
+}
+.none{
+    
+display: none !important;
+    
+}
+.search-box{
+    margin-inline: 10%;
+    display: flex;
+justify-content: space-between;
+}
+.editorcontainer{
+    display:flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+}
+.search-by-words{
+    display: flex;
+gap: 20px;
+}
+.settings{
+    border-radius: 50px;
+    display:flex;
+    flex-direction: column;
+    width:600px;
+    height: 600px;
+    gap:30px;
+    margin-left: 7%;
+background-color: whitesmoke;
+}
+.settings >*{
+    margin-inline: 65px;
+}
+.canvaseditor{
+    
+    width: 600px;
+    height: 600px;
+display: flex;
+align-items: center;
+background-color:whitesmoke;
+justify-content: center;
+height: 600px;
+border-radius: 50px;
+
+   
+    
+}
+canvas{
+    width:470px;
+    height: 470px;
+}
+.myCanvasContainer{
+    display: flex;
+    width:450px;
+    height: 400px;
+}
+.mymemes{  
+        padding: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    
+}
+.memetxteditor{
+    width: 100%;
+    margin-top: 70px;
+    font-size: 45px;
+    border-radius: 20px;
+}
+.area2{
+    display: flex;
+justify-content: center;
+gap: 30px;
+
+border-radius: 20px;
+}
+.area2 >  *{
+    height: 50px;
+    width: 50px;
+    border-radius: 10px;
+    border: none;
+outline: none;
+background-color: azure;
+}
+
+.area2 button >*{
+    width: 80%;
+}
+.area3{
+    width: 80%;
+    align-self: center;
+    border: 1px solid;
+border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    background-color: #ebe3e3;
+}
+.area3 >* {
+    margin-block: 8px;
+    background-color: rgba(193, 205, 180, 0.72);
+    height: 50px;
+    width: 60px;
+    border-radius: 10px;
+    border: none;
+outline: none;
+
+
+}
+.area3 >*:hover{
+    background-color: lightblue;
+}
+
+.choose-font{
+    font-size: 25px;
+    width: 180px;
+}
+.fa-3x {
+    color: black;
+}
+.area5 >* {
+    height: 50px;
+    width: 60px;
+    border-radius: 10px;
+    border: none;
+outline: none;
+background-color: azure; 
+}
+.area5 >*:hover{
+    background-color: rgba(193, 205, 180, 0.72);
+}
+.save-button{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    gap: 7px;
+    width: 200px;
+    margin-block: 4px;
+}
+.save-meme-button p{
+    
+    font-size: 25px;
+}
+.save-meme-button{
+    width: 25%;
+    display: flex;
+    align-items: center;
+justify-content: center;
+gap: 8px;
+margin-block: 4px;
+}
+a{
+    text-decoration: none;
+}
+.btn{
+    
+    font-size: 25px;
+}
+.area5{
+    border: 1px solid;
+border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+@media screen and (max-width:750px) {
+    
+    .open-gallery-link {
+        display: block;
+    }
+    .links {
+        /*position: fixed;
+        top: 30px;
+        left: 0;
+        width: 100%;
+        background-color: rgb(255 255 255 / 90%);*/
+        transform: translateX(200%);
+        transition: transform 0.6s, box-shadow 0.6s;
+    }
+
+    body.menu-open .links {
+        box-shadow: -6px 0px 20px rgb(0 0 0 / 25%);
+        transform: translateX(0);
+    }
+
+    .links{
+        flex-direction: column;
+    }
+
+    .main-nav .main-nav-list>li {
+        border-bottom: 1px solid #ccc;
+    }
+
+    .main-nav .main-nav-list a {
+        display: flex;
+        justify-content: center;
+        padding: 8px 10px;
+        color: var(--primary-2);
+    }
+    
+    .editorcontainer{
+        flex-direction: column-reverse;
+        gap: 10vh;
+        align-items: center;
+    }
+    .links{
+        position: fixed;
+        top:100px;
+        right: 10%;
+       
+        color: aqua;
+        padding: 0px;
+    }
+    .gallery-link{
+        text-align: center;
+       width:250px;
+        border-block: 1px solid;
+        padding: 0px;
+       margin-inline: 0;
+    }
+    .gallery{
+      
+        margin-top: 200px;
+    }
+}
