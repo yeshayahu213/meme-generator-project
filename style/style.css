@@ -24,8 +24,17 @@ body{
     width: 280px;
     margin: 10px;
 }
+.nav-container{
+    display: flex;
+    align-items: center;
+    height: 130px;
+    position: fixed;
+    top:-10px;
+    width: 100vw;
+    background-color: aliceblue;
+}
 .nav-gallery{
-
+width: 100%;
     position: relative;
     display: flex;
     justify-content: space-between;
@@ -41,11 +50,11 @@ body{
     
 }
 .open-gallery-link{
-    font-family:'medium';
-    right: 90px;
-top: 55px;
+    
+   
+  
     display: none;
-    position: fixed;
+    
 
 top: 50px;
 }
@@ -55,7 +64,7 @@ top: 50px;
 }
 .logo{
     font-family: 'logo';
-    font-size: 30px;
+    font-size: 50px;
     margin: 20px;
 }
 .none{
@@ -63,12 +72,20 @@ top: 50px;
 display: none !important;
     
 }
+.search-by-typing{
+    box-shadow: 1px 1px 2px 2px gray;
+}
 .search-box{
+    
+    align-items: center;
+    margin-top: 120px;
     margin-inline: 10%;
     display: flex;
 justify-content: space-between;
 }
 .editorcontainer{
+    top: 150px;
+position: relative;
     display:flex;
     flex-direction: row-reverse;
     justify-content: center;
@@ -114,6 +131,8 @@ canvas{
     height: 400px;
 }
 .mymemes{  
+    top: 150px;
+    position: relative;
         padding: 20px;
         display: flex;
         flex-wrap: wrap;
@@ -228,16 +247,25 @@ border-radius: 20px;
 @media screen and (max-width:750px) {
     
     .open-gallery-link {
-        display: block;
+        position: fixed;
+        right: 90px;
+        top: 85px;
+        width: 25px;
+        height: 25px;
+        border: 1px solid;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 3px;
+
     }
     .links {
-        /*position: fixed;
-        top: 30px;
-        left: 0;
-        width: 100%;
-        background-color: rgb(255 255 255 / 90%);*/
+        
         transform: translateX(200%);
         transition: transform 0.6s, box-shadow 0.6s;
+    }
+    .logo{
+        font-size: 30px;
     }
 
     body.menu-open .links {
@@ -253,13 +281,10 @@ border-radius: 20px;
         border-bottom: 1px solid #ccc;
     }
 
-    .main-nav .main-nav-list a {
-        display: flex;
-        justify-content: center;
-        padding: 8px 10px;
-        color: var(--primary-2);
+    .link-border{
+        padding-block: 10px;
+        border-top: 1px solid black;
     }
-    
     .editorcontainer{
         flex-direction: column-reverse;
         gap: 10vh;
@@ -269,16 +294,21 @@ border-radius: 20px;
         position: fixed;
         top:100px;
         right: 10%;
-       
-        color: aqua;
+       background-color: #ebe3e3;
+      
         padding: 0px;
     }
     .gallery-link{
+        
+        margin: 10px;
         text-align: center;
        width:250px;
-        border-block: 1px solid;
-        padding: 0px;
+       
+        
        margin-inline: 0;
+    }
+    .gallery-link:hover{
+        background-color: rgba(193, 205, 180, 0.72);
     }
     .gallery{
       

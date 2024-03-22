@@ -33,7 +33,7 @@ function onSearchMeme(value, ev) {
 
         console.log(value);
         gPics = getPics()
-        setTimeout(() => { renderGallery(), console.log(gPics.length); }, 3000)
+        renderGallery()
         //renderGallery()
 
     }
@@ -63,7 +63,8 @@ function onSearchMeme(value, ev) {
 var pagesObj = {
     elGallery: document.querySelector('.gallery'),
     elEditor: document.querySelector('.editorcontainer'),
-    elMmeme: document.querySelector('.mymemes')
+    elMmeme: document.querySelector('.mymemes'),
+    elSearch: document.querySelector('.search-box')
 }
 function onEditeMeme(id) {
     updateCurrImg(id)
@@ -77,14 +78,17 @@ function moveToEdit() {
     pagesObj.elGallery.classList.add('none')
     pagesObj.elMmeme.classList.add('none')
     pagesObj.elEditor.classList.remove('none')
+    pagesObj.elSearch.classList.add('none')
 }
 function moveToGallery() {
     pagesObj.elGallery.classList.remove('none')
+    pagesObj.elSearch.classList.remove('none')
     pagesObj.elMmeme.classList.add('none')
     pagesObj.elEditor.classList.add('none')
 }
 function moveToSavedMemes() {
     pagesObj.elGallery.classList.add('none')
+    pagesObj.elSearch.classList.add('none')
     pagesObj.elMmeme.classList.remove('none')
     pagesObj.elEditor.classList.add('none')
 }

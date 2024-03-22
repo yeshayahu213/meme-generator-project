@@ -8,22 +8,27 @@
 
 </head>
 <body   onload="onInit()">
-    <nav class="nav-gallery">
-        <div class="logo">Memegenerator</div>
-        <div class="open-gallery-link" onclick="onToggleGalery()"> ☰</div>
-        <ul class="links">
-            <li class="gallery-link" onclick="moveToGallery()">gallery</li>
-            <li class="gallery-link" onclick="moveToSavedMemes()">yourmemes</li>
-        </ul>
-    </nav>
+    <div class="nav-container">
+
+        <nav class="nav-gallery">
+            <div class="logo">Memegenerator</div>
+            <div class="open-gallery-link" onclick="onToggleGalery()"> ☰</div>
+            <ul class="links">
+                <li class="gallery-link" onclick="moveToGallery()">gallery</li>
+                <li class="gallery-link link-border" onclick="moveToSavedMemes()">yourmemes</li>
+            </ul>
+        </nav>
+    </div>
+   
     <div class="header-gallery"></div>
     <div class="search-box">
-            <div class="serch-by-words">
+            <div class="search-by-words">
                 <p class="happy-keyword"onclick="onSelectMeme('happy')">happy</p>
                 <p class="happy-keyword"onclick="onSelectMeme('sad')">sad</p>
+                <p class="happy-keyword"onclick="onSelectMeme('lol')">lol</p>
                 <p class="happy-keyword"onclick="onSelectMeme('confuse')">confuse</p>
             </div>
-            <div class="serch-by-typing" >
+            <div class="search-by-typing" >
                 <input type="text" class="search-text" onkeyup="onSearchMeme(this.value,event); return false">
             </div>
     </div>
@@ -31,7 +36,7 @@
     <div class="editorcontainer none">
         <div class="settings">
             <div class="area1">
-                <input type="text" class="memetxteditor" onchange="onEditTxt(this)">
+                <input type="text" class="memetxteditor" onkeyup="onEditTxt(this)">
             </div>
         <div class="area2">
             <button onclick="onAddLine()">
@@ -67,7 +72,7 @@
             <button><input type="color" value="#ffffff"
               onchange="onSetColor(this.value)"></button>
               <button><input type="color" value="#ffffff"
-                onchange="onSetColor(this.value)"></button>
+                onchange="onSetFillColor(this.value)"></button>
         </div>
         <div class="area4">
             

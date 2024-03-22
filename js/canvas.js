@@ -96,7 +96,7 @@ function drawText(text, x = 0, y = 10, strockeColor = "white", fillStyleColor = 
     gCtx.lineWidth = 2
 
     gCtx.strokeStyle = strockeColor
-
+    console.log(fillStyleColor);
     gCtx.fillStyle = fillStyleColor
 
     gCtx.font = `${fontSize}px ${font}`
@@ -153,6 +153,11 @@ function save() {
 function onSetColor(value) {
 
     updateColor(value)
+    renderCanvas()
+}
+function onSetFillColor(value) {
+    console.log(value);
+    updateFillColor(value)
     renderCanvas()
 }
 

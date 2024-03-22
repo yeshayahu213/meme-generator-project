@@ -145,6 +145,9 @@ function updateImages(images) {
 }
 
 function updateColor(color) {
+    gTempMeme.lines[gTempMeme.selectedLineIdx].stroke = color
+}
+function updateFillColor(color) {
     gTempMeme.lines[gTempMeme.selectedLineIdx].fillColor = color
 }
 
