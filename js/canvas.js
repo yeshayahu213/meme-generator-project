@@ -10,9 +10,10 @@ var gIsDrawRect = true
 
 
 
-var meme
+var gMeme = getMeme()
+
 function loadCanvas() {
-    meme = getMeme()
+
     gElCanvas = document.querySelector('canvas')
 
     gCtx = gElCanvas.getContext('2d');
@@ -28,45 +29,48 @@ function loadCanvas() {
 }
 function renderCanvas() {
 
-    meme = getMeme()
-    console.log(meme);
+    var gCurrLine = gMeme.lines[gMeme.selectedLineIdx]
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d');
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
 
+
+
     var currImg = getCurrImg()
     const pic = new Image()
     pic.src = `./pictures/${currImg}.jpg`
-
+    onInitMove()
 
     var elEditorTxt = document.querySelector('.memetxteditor')
 
 
-    elEditorTxt.value = meme.lines[meme.selectedLineIdx].txt
+    elEditorTxt.value = gCurrLine.txt
     pic.onload = () => {
 
         //elEditorTxt.value = meme.lines[meme.selectedLineIdx].txt
 
-        var txt = meme.lines[meme.selectedLineIdx].txt
-        var align = meme.lines[meme.selectedLineIdx].align
-        var location = meme.lines[meme.selectedLineIdx].location
+        var txt = gCurrLine.txt
+        var align = gCurrLine.align
+        var location = gCurrLine.location
         var widthTxt = gCtx.measureText(txt).width
         changeLineWidth(widthTxt)
+        var pos = gCurrLine.pos
         gCtx.drawImage(pic, 0, 0, gElCanvas.width, gElCanvas.height)
 
         if (gIsDrawRect) {
 
-            drawRect(align, location, widthTxt, meme.lines[meme.selectedLineIdx].size)
+            drawRect(pos.x, pos.y, pos.w, pos.h)
         }
         else gIsDrawRect = true
 
 
-        meme.lines.forEach(line => {
 
+        for (var i = 0; i < gMeme.lines.length; i++) {
+            var line = gMeme.lines[i]
+            drawText(line.txt, line.pos.x, line.pos.y, line.fillColor, line.stroke,
+                line.size, line.align, line.font, i)
 
-            drawText(line.txt, 130, 30 * line.location, line.fillColor, line.stroke,
-                line.size, line.align, line.font)
-        });
+        }
 
 
     }
@@ -74,13 +78,16 @@ function renderCanvas() {
 }
 
 function onAddLine() {
-    if (meme.lines.length <= 3) addLine()
+    if (gMeme.lines.length <= 3) addLine()
+
     else return
 
     renderCanvas()
+
 }
 
 function onEditTxt(val) {
+
     var value = val.value
     changeTxt(value)
 
@@ -92,19 +99,24 @@ function changeTxt(txt) {
 }
 
 function drawText(text, x = 0, y = 10, strockeColor = "white", fillStyleColor = "white", fontSize = 25,
-    align = "center", font) {
+    align = "center", font, idx = 99) {
+    console.log(idx);
     gCtx.lineWidth = 2
 
     gCtx.strokeStyle = strockeColor
-    console.log(fillStyleColor);
-    gCtx.fillStyle = fillStyleColor
 
+    gCtx.fillStyle = fillStyleColor
+    var width = 0
     gCtx.font = `${fontSize}px ${font}`
     gCtx.textAlign = align
     gCtx.textBaseline = 'middle'
-
-    gCtx.fillText(text, x, y)
-    gCtx.strokeText(text, x, y)
+    var gCurrLine
+    if (idx === 99) gCurrLine = gMeme.lines[gMeme.selectedLineIdx]
+    else gCurrLine = gMeme.lines[idx]
+    if (gCurrLine.align === 'center') width = gCurrLine.width / 2
+    else if (gCurrLine.align === 'right') width = gCurrLine.width
+    gCtx.fillText(text, x + width, y + (fontSize / 2))
+    gCtx.strokeText(text, x + width, y + (fontSize / 2))
 }
 
 function onEnlargeTxt() {
@@ -156,22 +168,20 @@ function onSetColor(value) {
     renderCanvas()
 }
 function onSetFillColor(value) {
-    console.log(value);
+
     updateFillColor(value)
     renderCanvas()
 }
 
-function drawRect(align, location, width, size) {
-    var startPoint = 130
+function drawRect(x, y, w, h) {
 
-    console.log(align);
-    console.log(width / 2);
-    if (align === 'right') startPoint = 130 - (width + (size / 6))
-    if (align === 'left') startPoint = 130 - (size / 6)
-    if (align === 'center') startPoint = 130 - (width / 2)
+
+
+
+
     gCtx.strokeStyle = 'gray'
     gCtx.lineWidth = 1.5
-    gCtx.strokeRect(startPoint, location * 28 - (size / 2), width + (size / 3), size + 5)
+    gCtx.strokeRect(x, y, w, h)
 
 
 }
@@ -180,7 +190,7 @@ function shareOnFacebook() {
     onUploadImg()
 }
 function onchangeFont(value) {
-    console.log(value);
+
     changeLineFont(value)
     renderCanvas()
 }

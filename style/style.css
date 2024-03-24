@@ -249,7 +249,7 @@ border-radius: 20px;
     .open-gallery-link {
         position: fixed;
         right: 90px;
-        top: 85px;
+       
         width: 25px;
         height: 25px;
         border: 1px solid;
@@ -313,5 +313,8 @@ border-radius: 20px;
     .gallery{
       
         margin-top: 200px;
+    }
+    .canvaseditor{
+        margin-top: 100px
     }
 }

@@ -19,9 +19,15 @@ function createMeme() {
                 stroke: 'white',
                 align: 'center',
 
+
+
             }
+
         ]
+
     }
+    var line = meme.lines[0]
+    line.pos = calculatePos(line.location, line.align, line.width, line.size)
     gTempMeme = meme;
 
 }
@@ -50,9 +56,11 @@ function addLine() {
         fillColor: 'white',
         stroke: 'white',
         align: 'center',
-        width: 40
+        width: 40,
 
     }
+
+    line.pos = calculatePos(line.location, line.align, line.width, line.size)
     gTempMeme.lines.push(line);
     gTempMeme.selectedLineIdx = gTempMeme.lines.length - 1;
 }
@@ -63,10 +71,15 @@ function editTxt(txt) {
 }
 
 function enlargeTxt() {
-    gTempMeme.lines[gTempMeme.selectedLineIdx].size += 10
+    var line = gTempMeme.lines[gTempMeme.selectedLineIdx]
+    line.size += 10
+    line.pos.h = calculatePos(line.location, line.align, line.width, line.size).h
 }
 function reduceTxt() {
-    gTempMeme.lines[gTempMeme.selectedLineIdx].size -= 10
+    var line = gTempMeme.lines[gTempMeme.selectedLineIdx]
+
+    line.size -= 10
+    line.pos.h = calculatePos(line.location, line.align, line.width, line.size).h
 }
 
 function moveSelectedLine() {
@@ -75,8 +88,10 @@ function moveSelectedLine() {
 }
 
 function alignTxt(dir) {
+    var line = gTempMeme.lines[gTempMeme.selectedLineIdx]
+    line.align = dir
+    line.pos.x = calculatePos(line.location, line.align, line.width, line.size).x
 
-    gTempMeme.lines[gTempMeme.selectedLineIdx].align = dir
 }
 
 function areseTxt() {
@@ -120,7 +135,7 @@ function updateCurrMeme(id) {
     var idx = gSavedMemes.findIndex(meme => meme.id === id)
     var c = gSavedMemes[idx]
     gTempMeme = c
-    console.log(gSavedMemes[idx], gTempMeme);
+
 
     gSavedMemes.splice(idx, 1)
     var imgAsDataUrl = gElCanvas.toDataURL("image/png")
@@ -138,7 +153,7 @@ function updateImages(images) {
     gSavedImages = images
     var idxImg = gSavedImages.findIndex(img => img.gTempMeme.id === gTempMeme.id)
     gSavedImages.splice(idxImg, 1)
-    console.log(gSavedImages.length);
+
     localStorage.removeItem('images')
     var images = loadFromStorage('images')
 
@@ -156,5 +171,25 @@ function changeLineFont(font) {
 }
 
 function changeLineWidth(width) {
-    gTempMeme.lines[gTempMeme.selectedLineIdx].width = width
+
+    var line = gTempMeme.lines[gTempMeme.selectedLineIdx]
+    line.width = width
+
+    var pos = calculatePos(line.location, line.align, line.width, line.size)
+
+    line.pos.w = pos.w
+}
+
+function calculatePos(location, align, width, size) {
+
+    var startPoint
+    if (align === 'right') startPoint = 130 - (width + (size / 6))
+    if (align === 'left') startPoint = 130 - (size / 6)
+    if (align === 'center') startPoint = 130 - (width / 2)
+    return {
+        x: startPoint,
+        y: location * 28 - (size / 2),
+        w: width + (size / 3),
+        h: size + 5
+    }
 }
