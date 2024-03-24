@@ -42,7 +42,7 @@ function getMeme() {
     return gTempMeme
 }
 function updateCurrImg(id = gTempMeme.img) {
-
+    console.log(id);
     gCurrImg = id
 }
 
@@ -106,7 +106,7 @@ function areseTxt() {
 }
 
 function saveCurrMeme() {
-
+    console.log(gTempMeme);
     var imgAsDataUrl = gElCanvas.toDataURL("image/png")
     gSavedImages.push({ gTempMeme, imgAsDataUrl })
 
@@ -116,7 +116,7 @@ function saveCurrMeme() {
     gSavedMemes.push(gTempMeme)
 
     saveToStorage('memes', gSavedMemes)
-    gTempMeme = {}
+    //gTempMeme = {}
 
 }
 
